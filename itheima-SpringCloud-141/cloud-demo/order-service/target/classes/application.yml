@@ -1,0 +1,27 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/cloud_order?useSSL=false
+    username: root
+    password: abc123
+    driver-class-name: com.mysql.jdbc.Driver
+  application:
+    name: orderservice
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+  instance: # 在Eureka中显示服务的ip地址
+    ip-address: 127.0.0.1 # 配置服务器ip地址
+    prefer-ip-address: true # 更倾向于使用ip,而不是host名
+    instance-id: ${eureka.instance.ip-address}:${server.port} # 自定义实例的id
+mybatis:
+  type-aliases-package: cn.itcast.user.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    cn.itcast: debug
+  pattern:
+    dateformat: MM-dd HH:mm:ss:SSS
